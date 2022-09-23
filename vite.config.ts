@@ -8,7 +8,7 @@ export default defineConfig({
     outDir: '../dist',
     emptyOutDir: true,
     commonjsOptions: {
-      include: [/madoi/, /node_modules/]
+      include: [/lib/, /node_modules/]
     }
   },
   plugins: [react()],
@@ -18,6 +18,6 @@ export default defineConfig({
     open: true,
   },
   optimizeDeps: {
-    include: ['madoi']
+    include: ['lib']
   },
 })

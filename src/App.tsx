@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { createRoot } from 'react-dom/client'
 import ChatForm from './ChatForm'
-import { Madoi } from './madoi/madoi'
+import { Madoi } from '../lib/madoi/madoi'
 import './App.css'
 
 function App() {
