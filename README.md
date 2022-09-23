@@ -32,5 +32,8 @@ yarn install
 yarn build
 ```
 
+次にpreviewコマンドを実行すると，ブラウザが起動し，チャットアプリケーションが表示されます。
 
-
+```bash
+yarn preview
+```
