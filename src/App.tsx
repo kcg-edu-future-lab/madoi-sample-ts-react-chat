@@ -1,27 +1,36 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { createRoot } from 'react-dom/client'
 import ChatForm from './ChatForm'
 import { Madoi } from '../lib/madoi/madoi'
 import './App.css'
 
-function App() {
+export default function App() {
   const log = useRef<HTMLDivElement>(null!);
-  let addLog = (name: string, message: string)=>{
-    const p = document.createElement("div");
-    createRoot(p).render(
-      <div><b>{name}</b>: <span>{message}</span></div>
-    );
-    log.current.append(p);
+  const addLog = useRef<(name: string, message: string)=>void>(null!);
+  const onFormSubmit = (name: string, message: string)=>{
+    addLog.current?.(name, message);
   };
-  const m = new Madoi(`wss://fungo.kcg.edu/madoi-20220920/rooms/chat-ldsngksjde4a`);
-  addLog = m.registerFunction(addLog, {maxLog: 1000});
+  useEffect(()=>{
+    console.log("useEffect");
+    const roomId = "madoi-sample-chat-react-ts-2lakdjf";
+    const m = new Madoi(`ws://localhost:8080/madoi/rooms/${roomId}`, "ahfuTep6ooDi7Oa4");
+    addLog.current = m.registerFunction((name, message)=>{
+      console.log("addLog")
+      const p = document.createElement("div");
+      createRoot(p).render(
+        <div><b>{name}</b>: <span>{message}</span></div>
+      );
+      log.current?.append(p);
+    }, {share: {maxLog: 1000}});
+    return ()=>{
+      m.close();
+    }
+  }, []);
   return (
     <div className="App">
-      <ChatForm onFormSubmit={addLog} />
-      <div ref={log} id="chatLogDiv">
+      <ChatForm onFormSubmit={onFormSubmit} />
+      <div ref={log}>
       </div>
     </div>
   );
 }
-
-export default App

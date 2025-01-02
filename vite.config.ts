@@ -1,23 +1,16 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from "@vitejs/plugin-react-swc"
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  plugins: [react({ tsDecorators: true })],
+  base: "./",
   build: {
-    outDir: '../dist',
-    emptyOutDir: true,
-    commonjsOptions: {
-      include: [/lib/, /node_modules/]
-    }
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+        inlineDynamicImports: true,
+      },
+    },
   },
-  plugins: [react()],
-  publicDir: '../public',
-  root: './src',
-  server: {
-    open: true,
-  },
-  optimizeDeps: {
-    include: ['lib']
-  },
-})
+  server: { open: true },
+});

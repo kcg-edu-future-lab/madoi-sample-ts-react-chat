@@ -1,14 +1,14 @@
-import { useRef } from "react";
+import { FormEventHandler, useRef } from "react";
 
 type f = (name: string, message: string)=>void;
 
-export default function ChatForm({onFormSubmit}: {onFormSubmit: f}){
+export default function ChatForm({onFormSubmit}: {onFormSubmit: (name: string, message: string)=>void}){
     const name = useRef<HTMLInputElement>(null!);
     const message = useRef<HTMLInputElement>(null!);
     const onSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
-        const n = name.current!.value.trim();
-        const m = message.current!.value.trim();
+        const n = name.current?.value.trim();
+        const m = message.current?.value.trim();
         if(m.length > 0){
             onFormSubmit(n, m);
             message.current!.value = "";
