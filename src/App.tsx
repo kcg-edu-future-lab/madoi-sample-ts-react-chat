@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 import { GetState, Madoi, SetState, Share, ShareClass } from './lib/madoi/madoi'
-import { MadoiObject, useMadoiObject } from './MadoiReactHelpers';
+import { useMadoiObject } from './lib/madoi/reactHelpers';
 import ChatForm from './ChatForm'
 import './App.css'
 
@@ -12,13 +12,12 @@ const madoiContext = createContext<Madoi>(new Madoi(
 
 type Log = {name: string, message: string};
 @ShareClass({className: "Chat"})
-class Chat extends MadoiObject<Chat>{
+class Chat{
   private logs: Log[] = [];
 
   @Share()
   addLog(name: string, message: string){
     this.logs = [...this.logs, {name, message}];
-    this.fireChange({detail: this.logs});
   }
 
   @GetState()
@@ -29,7 +28,6 @@ class Chat extends MadoiObject<Chat>{
   @SetState()
   setLogs(logs: Log[]){
     this.logs = logs;
-    this.fireChange({detail: this.logs});
   }
 }
 
@@ -44,7 +42,7 @@ export default function App() {
       <ChatForm onFormSubmit={onFormSubmit} />
       <div className="chatLog">
         {(chat?.getLogs() || []).map((l, i)=>
-        <div key={i}><span>{l.name}</span>: <span>{l.message}</span></div>
+          <div key={i}><span>{l.name}</span>: <span>{l.message}</span></div>
         )}
       </div>
     </div>

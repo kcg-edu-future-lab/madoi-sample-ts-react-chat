@@ -813,7 +813,7 @@ export class Madoi extends MadoiEventTarget<Madoi> implements MadoiEventListener
 		} else if(msg.type){
 			this.dispatchEvent(new CustomEvent(msg.type, {detail: msg}));
 		} else{
-			console.log("Unknown message type.", msg);
+			console.warn("Unknown message type.", msg);
 		}
 	}
 
@@ -955,7 +955,7 @@ export class Madoi extends MadoiEventTarget<Madoi> implements MadoiEventListener
 		const methodDefinitions = new Array<MethodDefinition>();
 		const methodToIndex = new Map<string, number>();
 			// デコレータから
-		Object.getOwnPropertyNames(obj.__proto__).forEach(methodName => {
+		Object.getOwnPropertyNames(Object.getPrototypeOf(obj)).forEach(methodName => {
 			const f = obj[methodName];
 			if(typeof(f) != "function") return;
 			if(!f.madoiMethodConfig_) return;
@@ -1012,7 +1012,7 @@ export class Madoi extends MadoiEventTarget<Madoi> implements MadoiEventListener
 					f.bind(obj),
 					c.share,
 					objId, mc.methodId);
-				obj[f.name] = function(){
+				obj[mc.name] = function(){
 					objEntry.modification++;
 					return newf.apply(null, arguments);
 				};
@@ -1020,7 +1020,7 @@ export class Madoi extends MadoiEventTarget<Madoi> implements MadoiEventListener
 				// @HostOnlyの場合はメソッドを置き換え
 				const newf = this.addHostOnlyFunction(
 					f.bind(obj), c.hostOnly);
-				obj[f.name] = function(){
+				obj[mc.name] = function(){
 					return newf.apply(null, arguments);
 				}
 			} else if("getState" in c){
@@ -1154,7 +1154,7 @@ export class Madoi extends MadoiEventTarget<Madoi> implements MadoiEventListener
 					}));
 				info.lastGet = curTick;
 				oe.modification = 0;
-				console.log(`state saved: ${objId}`)
+				console.debug(`state saved: ${objId}`)
 			}
 		}
 	}
