@@ -15,11 +15,6 @@ type Log = {name: string, message: string};
 class Chat extends MadoiObject<Chat>{
   private logs: Log[] = [];
 
-  constructor(){
-    super();
-    console.log("Chat.constructor()");
-  }
-
   @Share()
   addLog(name: string, message: string){
     this.logs = [...this.logs, {name, message}];
@@ -27,12 +22,12 @@ class Chat extends MadoiObject<Chat>{
   }
 
   @GetState()
-  getState(){
+  getLogs(){
     return this.logs;
   }
 
   @SetState()
-  setState(logs: Log[]){
+  setLogs(logs: Log[]){
     this.logs = logs;
     this.fireChange({detail: this.logs});
   }
@@ -45,10 +40,10 @@ export default function App() {
     chat?.addLog(name, message);
   };
   return (
-    <div className="App">
+    <div>
       <ChatForm onFormSubmit={onFormSubmit} />
       <div className="chatLog">
-        {(chat?.getState() || []).map((l, i)=>
+        {(chat?.getLogs() || []).map((l, i)=>
         <div key={i}><span>{l.name}</span>: <span>{l.message}</span></div>
         )}
       </div>
