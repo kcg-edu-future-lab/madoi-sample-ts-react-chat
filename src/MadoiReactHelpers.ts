@@ -8,14 +8,14 @@ export abstract class MadoiObject<T extends TypedEventTarget<T>> extends TypedEv
   }
 }
 
-export function useMadoiObject<T extends MadoiObject<T>, U>(madoi: Madoi, initialValueFactory: ()=>T)
+export function useMadoiObject<T extends MadoiObject<T>, U>(madoi: Madoi, factory: ()=>T)
   : T | null{
   const value = useRef<T>(null!);
   const [_state, setState] = useState<any>();
 
   useEffect(()=>{
     if(value.current !== null) return;
-    value.current = initialValueFactory();
+    value.current = factory();
     const onChange = ()=>{
       setState(value.current.getState());
     };
