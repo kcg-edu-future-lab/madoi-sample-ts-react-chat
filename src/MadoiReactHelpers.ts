@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Madoi, TypedEventTarget } from "../lib/madoi/madoi";
+import { Madoi, TypedEventTarget } from "./lib/madoi/madoi";
 
 export abstract class MadoiObject<T extends TypedEventTarget<T>> extends TypedEventTarget<T>{
   abstract getState(): any;

@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { GetState, Madoi, SetState, Share, ShareClass } from '../lib/madoi/madoi'
+import { GetState, Madoi, SetState, Share, ShareClass } from './lib/madoi/madoi'
 import { MadoiObject, useMadoiObject } from './MadoiReactHelpers';
 import ChatForm from './ChatForm'
 import './App.css'
