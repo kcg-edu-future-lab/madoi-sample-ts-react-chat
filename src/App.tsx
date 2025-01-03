@@ -47,9 +47,11 @@ export default function App() {
   return (
     <div className="App">
       <ChatForm onFormSubmit={onFormSubmit} />
-      {(chat?.getState() || []).map((l, i)=>
+      <div className="chatLog">
+        {(chat?.getState() || []).map((l, i)=>
         <div key={i}><span>{l.name}</span>: <span>{l.message}</span></div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
