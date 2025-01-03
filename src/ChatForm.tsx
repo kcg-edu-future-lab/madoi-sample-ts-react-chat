@@ -1,11 +1,12 @@
 import { FormEventHandler, useRef } from "react";
 
-type f = (name: string, message: string)=>void;
-
-export default function ChatForm({onFormSubmit}: {onFormSubmit: (name: string, message: string)=>void}){
+interface ChatInputFormProps{
+    onFormSubmit: (name: string, message: string)=>void;
+}
+export default function ChatInputForm({onFormSubmit}: ChatInputFormProps){
     const name = useRef<HTMLInputElement>(null!);
     const message = useRef<HTMLInputElement>(null!);
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
+    const onSubmit: FormEventHandler = e=>{
         e.preventDefault();
         const n = name.current?.value.trim();
         const m = message.current?.value.trim();
