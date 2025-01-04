@@ -1,4 +1,4 @@
-# madoi-sample-chat-react-ts
+# madoi-sample-ts-react-chat
 
 ## 必要なソフトウェアのインストール
 
@@ -17,10 +17,10 @@ npm install -g yarn
 まずこのリポジトリをcloneしてください。
 
 ```bash
-git clone https://github.com/kcg-edu-future-lab/madoi-sample-chat-react-ts
+git clone https://github.com/kcg-edu-future-lab/madoi-sample-ts-react-chat
 ```
 
-次にmadoi-sample-chat-react-tsディレクトリに入り，次のコマンドを実行して関連ライブラリをインストールしてください。
+次にmadoi-sample-ts-react-chatディレクトリに入り，次のコマンドを実行して関連ライブラリをインストールしてください。
 
 ```bash
 yarn install

@@ -4,7 +4,7 @@ import { useMadoiObject } from './lib/madoi/reactHelpers';
 import ChatForm from './ChatForm'
 import './App.css'
 
-const roomId = "madoi-sample-chat-react-ts-2lakdjf";
+const roomId = "madoi-sample-ts-react-chat-2lakdjf";
 const apikey = "ahfuTep6ooDi7Oa4";
 const madoiContext = createContext<Madoi>(new Madoi(
   `ws://localhost:8080/madoi/rooms/${roomId}`,
