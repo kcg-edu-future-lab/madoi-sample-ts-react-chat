@@ -2,15 +2,9 @@
 
 ## 必要なソフトウェアのインストール
 
-このサンプルでは，ビルドと実行にyarnを使用します。yarnはnodejsに依存しているので，nodejsがインストールされていない場合，まず，下記のバージョンのnodejsをインストールしてください。
+下記のバージョンのnodejsで動作確認を行なっています。
 
-* nodejs (version 16.17.0)
-
-yarnがインストールされていない場合，次のコマンドでインストールしてください。
-
-```bash
-npm install -g yarn
-```
+* nodejs (v22.12.0)
 
 ## ビルドと起動
 
@@ -23,17 +17,17 @@ git clone https://github.com/kcg-edu-future-lab/madoi-sample-ts-react-chat
 次にmadoi-sample-ts-react-chatディレクトリに入り，次のコマンドを実行して関連ライブラリをインストールしてください。
 
 ```bash
-yarn install
+npm i
 ```
 
-続いてビルドを実行してください。
+devコマンドを実行すると，ブラウザが起動し，チャットアプリケーションが表示されます。
 
 ```bash
-yarn build
+npm run dev
 ```
 
-次にpreviewコマンドを実行すると，ブラウザが起動し，チャットアプリケーションが表示されます。
+静的ビルドを行うには，buildコマンドを実行してください。
 
 ```bash
-yarn preview
+npm run build
 ```
