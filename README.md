@@ -1,5 +1,19 @@
 # madoi-sample-ts-react-chat
 
+## Madoiサーバの起動
+
+適当なディレクトリで以下のコマンドを実行し、Madoi の madoi-volatileserver を起動してください。詳細は、[MadoiのREADME](https://github.com/kcg-edu-future-lab/madoi)も参照してください。
+
+
+```bash
+git clone https://github.com/kcg-edu-future-lab/madoi
+cd madoi
+docker compose up
+```
+
+`docker compose up`を実行すると、Madoiのビルドが行われ、madoi-volatileserverが起動します。
+
+
 ## 必要なソフトウェアのインストール
 
 下記のバージョンのnodejsで動作確認を行なっています。

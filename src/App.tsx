@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
-import { GetState, Madoi, SetState, Share, ShareClass } from './lib/madoi/madoi'
-import { useMadoiObject } from './lib/madoi/reactHelpers';
+import { GetState, Madoi, SetState, Share, ShareClass } from 'madoi-client'
+import { useSharedModel } from 'madoi-client-react';
 import ChatForm from './ChatForm'
 import './App.css'
 
@@ -33,15 +33,15 @@ class Chat{
 
 export default function App() {
   const madoi = useContext(madoiContext);
-  const chat = useMadoiObject(madoi, ()=>new Chat());
+  const chat = useSharedModel(madoi, ()=>new Chat());
   const onFormSubmit = (name: string, message: string)=>{
-    chat?.addLog(name, message);
+    chat.addLog(name, message);
   };
   return (
     <div>
       <ChatForm onFormSubmit={onFormSubmit} />
       <div className="chatLog">
-        {(chat?.getLogs() || []).map((l, i)=>
+        {chat.getLogs().map((l, i)=>
           <div key={i}><span>{l.name}</span>: <span>{l.message}</span></div>
         )}
       </div>
