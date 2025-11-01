@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { GetState, Madoi, SetState, Share, ShareClass } from 'madoi-client'
+import { ChangeState, Distributed, GetState, Madoi, SetState } from 'madoi-client'
 import { useSharedModel } from 'madoi-client-react';
 import ChatForm from './ChatForm'
 import './App.css'
@@ -11,11 +11,11 @@ const madoiContext = createContext<Madoi>(new Madoi(
   apikey));
 
 type Log = {name: string, message: string};
-@ShareClass({className: "Chat"})
 class Chat{
   private logs: Log[] = [];
 
-  @Share()
+  @Distributed()
+  @ChangeState()
   addLog(name: string, message: string){
     this.logs = [...this.logs, {name, message}];
   }

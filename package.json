@@ -3,11 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "dependencies": {
-    "react-icons": "^4.4.0",
-    "madoi-client": "^0.2.8",
-    "madoi-client-react": "^0.1.6",
+    "madoi-client": "^0.3.0",
+    "madoi-client-react": "^0.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-icons": "^4.4.0",
     "tcet": "^1.0.3",
     "uuid": "^11.1.0"
   },
