@@ -36,7 +36,6 @@ class Chat{
 export default function App() {
   const madoi = useContext(madoiContext);
   const chat = useMadoiModel(madoi, ()=>new Chat());
-  const logs = chat.getLogs();
   const onFormSubmit = (message: string)=>{
     chat.addLog(madoi.getSelfPeer().profile.name || "匿名", message);
   };
@@ -47,7 +46,7 @@ export default function App() {
         <h2>チャット</h2>
         <ChatForm onFormSubmit={onFormSubmit} />
         <div className="chatLog">
-          {logs.map((l, i)=>
+          {chat.getLogs().map((l, i)=>
             <div key={i}><span>{l.name}</span>: <span>{l.message}</span></div>
           )}
         </div>
