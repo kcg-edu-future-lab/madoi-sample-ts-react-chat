@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react'
-import { GetState, Madoi, SetState, Share, ShareClass } from './lib/madoi/madoi'
-import { useMadoiObject } from './lib/madoi/reactHelpers';
+import { ChangeState, GetState, Madoi, SetState, Distributed, ClassName } from 'madoi-client'
 import ChatForm from './ChatForm'
 import './App.css'
+import { useMadoiModel } from 'madoi-client-react';
 
 const roomId = "madoi-sample-ts-react-chat-2lakdjf";
 const apikey = "ahfuTep6ooDi7Oa4";
@@ -11,11 +11,12 @@ const madoiContext = createContext<Madoi>(new Madoi(
   apikey));
 
 type Log = {name: string, message: string};
-@ShareClass({className: "Chat"})
+@ClassName("Chat")
 class Chat{
   private logs: Log[] = [];
 
-  @Share()
+  @Distributed()
+  @ChangeState()
   addLog(name: string, message: string){
     this.logs = [...this.logs, {name, message}];
   }
@@ -33,7 +34,7 @@ class Chat{
 
 export default function App() {
   const madoi = useContext(madoiContext);
-  const chat = useMadoiObject(madoi, ()=>new Chat());
+  const chat = useMadoiModel(madoi, ()=>new Chat());
   const onFormSubmit = (name: string, message: string)=>{
     chat?.addLog(name, message);
   };
