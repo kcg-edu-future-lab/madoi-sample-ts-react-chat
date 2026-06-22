@@ -2,13 +2,12 @@ import { createContext, useContext } from 'react'
 import { ChangeState, Distributed, GetState, Madoi, SetState } from 'madoi-client'
 import { useMadoiModel } from 'madoi-client-react';
 import ChatForm from './ChatForm'
+import { madoiUrl, madoiKey} from './keys'
 import './App.css'
 
 const roomId = "madoi-sample-ts-react-chat-2lakdjf";
-const apikey = "ahfuTep6ooDi7Oa4";
 const madoiContext = createContext<Madoi>(new Madoi(
-  `ws://localhost:8080/madoi/rooms/${roomId}`,
-  apikey));
+  `${madoiUrl}/${roomId}`, madoiKey));
 
 type Log = {name: string, message: string};
 class Chat{
