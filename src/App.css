@@ -1,9 +1,79 @@
+div.app {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+div.userList,
+div.chatPanel {
+    width: 160px;
+    min-height: 200px;
+    border: solid 1px;
+    border-radius: 4px;
+    padding: 8px;
+    overflow-x: clip;
+}
+
+div.userList h2,
+div.chatPanel h2 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+div.emptyUser {
+    color: #666;
+}
+
+button.selfUser {
+    display: block;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+button.selfUser:hover {
+    text-decoration: underline;
+}
+
+div.namePopupBackdrop {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgb(0 0 0 / 30%);
+}
+
+div.namePopup {
+    display: grid;
+    gap: 8px;
+    width: min(280px, calc(100vw - 32px));
+    border: solid 1px;
+    border-radius: 4px;
+    padding: 12px;
+    background: white;
+}
+
+div.namePopup h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+div.chatPanel {
+    flex: 1;
+    width: auto;
+}
+
 div.chatLog {
     overflow: scroll;
     resize: vertical;
     min-height: 200px;
     max-height: 400px;
     border: solid 1px;
-    padding: 4;
+    padding: 4px;
     border-radius: 4px;
 }
